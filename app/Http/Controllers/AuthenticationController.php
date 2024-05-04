@@ -28,8 +28,7 @@ class AuthenticationController extends Controller
                 $user = Auth::guard('admin')->user();
                 if(Auth::guard('admin')->user()->status == 'active')
                 {
-                    // return redirect()->route('admin.dashboard');
-                    echo "Authentication Successful";
+                    return redirect()->route('dashboard');
                 }
                 else
                 {

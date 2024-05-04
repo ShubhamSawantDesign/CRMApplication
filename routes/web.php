@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
-
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -25,3 +25,7 @@ Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Auth::routes();
 
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+});

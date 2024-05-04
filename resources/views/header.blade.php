@@ -45,7 +45,7 @@
 </head>
 <script src="{{ url('plugins/jquery/jquery.min.js'); }}"></script>
 <body class="hold-transition sidebar-mini layout-fixed">
-@include('admin.sidebar')
+@include('sidebar')
 
 @yield('content')
 
