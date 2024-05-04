@@ -13,13 +13,7 @@ class Authenticate extends Middleware
     protected function authenticate($request, array $guards)
     {
         if ($this->auth->guard('admin')->check()) {
-            if ( Auth::guard('admin')->User()->user_role == 'admin') {
-                return $this->auth->shouldUse('admin');
-            }
-            else
-            {
-                Alert::warning('You Dont Have Access to this Section');
-            }
+            return $this->auth->shouldUse('admin');
         }
         else
         {
@@ -33,6 +27,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('admin-login');
+        return $request->expectsJson() ? null : route('homepage');
     }
 }
