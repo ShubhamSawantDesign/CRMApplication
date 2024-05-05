@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_authentication', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
+            $table->id('user_id');
             $table->string('login_username', 250);
             $table->string('username', 250);
             $table->string('email', 250);
