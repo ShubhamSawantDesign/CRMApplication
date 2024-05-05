@@ -31,4 +31,24 @@ class AjaxController extends Controller
         // Return JSON response
         return response()->json($response);
     }
+
+    public function removeCustomer(Request $request)
+    {
+        // Retrieve customer ID from the AJAX request
+        $id = $request->id;
+
+        // Perform delete operation in the database
+        $deleted = DB::table('tbl_customers')
+            ->where('id', $id)
+            ->delete();
+
+        // Check if the deletion was successful
+        if ($deleted) {
+            // If successful, return success response
+            return response()->json('success');
+        } else {
+            // If failed, return error response
+            return response()->json('error');
+        }
+    }
 }

@@ -40,5 +40,4 @@ class MasterController extends Controller
         Alert::success('Added Client Successfully');
         return redirect()->back();
     }
-
 }

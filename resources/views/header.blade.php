@@ -54,8 +54,11 @@
 
 
 <script src="{{ url('plugins/jquery-ui/jquery-ui.min.js?v=1'); }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Data Table JQuery Files -->
 <script src="{{ url('plugins/datatables/jquery.dataTables.min.js'); }}"></script>
 <script src="{{ url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); }}"></script>
@@ -70,7 +73,6 @@
 <script src="{{ url('plugins/datatables-buttons/js/buttons.print.min.js'); }}"></script>
 <script src="{{ url('plugins/datatables-buttons/js/buttons.colVis.min.js'); }}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
@@ -119,6 +121,5 @@
 <script src="{{ url('plugins/select2/js/select2.min.js'); }}"></script>
 <script src="{{ url('customJS/function.js'); }}"></script>
 <script src="{{ url('customJS/inputValidation.jquery.js'); }}"></script>
-<script src="{{ url('customJS/Jquery.table.js'); }}"></script>
 <!-- Data Table Script -->
 </html>

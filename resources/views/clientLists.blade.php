@@ -98,8 +98,8 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                <a href="http://27.107.4.122/admin/editCustomer/62" class="btn-sm btn-warning mx-2"> <i class="fa fa-edit"></i> </a>
-                                                                <a class="btn-sm btn-danger" data-id="62" onclick="removeCustomer(62)"> <i class="fa fa-trash"></i> </a>
+                                                                <a href="{{ url('editCustomer/'.$data->id); }}" class="btn-sm btn-warning mx-2"> <i class="fa fa-edit"></i> </a>
+                                                                <a class="btn-sm btn-danger" data-id="{{ $data->id }}" onclick="removeCustomer({{ $data->id }})"> <i class="fa fa-trash"></i> </a>
                                                             </td>
                                                         </tr>
                                                         @endforeach
