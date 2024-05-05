@@ -70,7 +70,7 @@
 <script src="{{ url('plugins/datatables-buttons/js/buttons.print.min.js'); }}"></script>
 <script src="{{ url('plugins/datatables-buttons/js/buttons.colVis.min.js'); }}"></script>
 
-<script src="{{ url('agency/js/toastr.min.js'); }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>

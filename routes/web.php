@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\AjaxController;
 
 
 
@@ -32,7 +33,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::get('/clientMaster', [MasterController::class, 'clientMaster'])->name('clientMaster');
     Route::post('/doAddCustomer', [MasterController::class, 'doAddCustomer']);
-
+    Route::post('/changeCustomerStatus',[AjaxController::class, 'updateCustomerStatus']);
 
     
 });

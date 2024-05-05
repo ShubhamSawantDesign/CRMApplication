@@ -69,8 +69,8 @@
                                                             <th>Country</th>
                                                             <th>State</th>
                                                             <th>City</th>
-                                                            <th class="w-auto">Status</th>
-                                                            <th class="w-auto"> Actions </th>
+                                                            <th width='10%'>Status</th>
+                                                            <th width='10%'> Actions </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -86,9 +86,20 @@
                                                             <td>{{ $data->country }}</td>
                                                             <td>{{ $data->state }}</td>
                                                             <td>{{ $data->city }}</td>
-                                                            <td>{{ $data->status }}</td>
                                                             <td>
-
+                                                                @if($data->status == 'active')
+                                                                    <center>
+                                                                    <a href="javascript:void(0)" onclick="updateCustomerStatus({{ $data->id }},'inactive')" class="btn btn-sm btn-outline-success w-90"><i class="fa fa-check" aria-hidden="true"></i> Active</a>
+                                                                    </center>
+                                                                @else
+                                                                    <center>
+                                                                    <a href="javascript:void(0)" onclick="updateCustomerStatus({{ $data->id }}, 'active')" class="btn btn-sm btn-outline-danger w-90" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Batch Not Approved" data-bs-original-title=" Not Active" aria-label=" Not Active"><i class="bi bi-x-square ml-1 mr-1"></i>  Not Active</a>
+                                                                    </center>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://27.107.4.122/admin/editCustomer/62" class="btn-sm btn-warning mx-2"> <i class="fa fa-edit"></i> </a>
+                                                                <a class="btn-sm btn-danger" data-id="62" onclick="removeCustomer(62)"> <i class="fa fa-trash"></i> </a>
                                                             </td>
                                                         </tr>
                                                         @endforeach
