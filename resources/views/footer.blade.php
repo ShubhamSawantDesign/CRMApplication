@@ -2,7 +2,7 @@
     use Carbon\Carbon;
 @endphp
 <footer class="main-footer">
-    <strong>Copyright &copy; {{ Carbon::now()->format('Y') }} <a href="">Aadiswayam</a>.</strong>
+    <strong>Copyright &copy; {{ Carbon::now()->format('Y') }} <a href="">CRM Application</a>.</strong>
     &nbsp;
       All rights reserved. Designed and Developed By Integrated Consultancy Services
     <div class="float-right d-none d-sm-inline-block">

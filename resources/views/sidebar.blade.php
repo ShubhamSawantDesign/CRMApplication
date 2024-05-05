@@ -51,10 +51,10 @@
   <div class="sidebar-header">
     <a href="{{ url('/admin/adminDashboard'); }}" class="d-flex align-items-center">
       <div>
-        <img src="{{ url('/admin/img/trti-logo.png'); }}" class="logo-icon img-fluid" width="80" height="80" alt="logo icon">
+        <!-- <img src="{{ url('/admin/img/trti-logo.png'); }}" class="logo-icon img-fluid" width="80" height="80" alt="logo icon"> -->
       </div>
       <div>
-        <h4 class="logo-text"> Tribal Research &amp; Training Institute</h4>
+        <h4>CRM Application</h4>
       </div>
     </a>
   </div>
@@ -99,46 +99,34 @@
         </li>
         <li class="nav-header">Managing Section</li>
         <!-- Start Admin Masters-->
-        <li class="nav-item @if(preg_match('/sector|jobrole|education|locationcategory|usermanagement|companies/i', $url))menu-open @endif">
+        <li class="nav-item @if(preg_match('/clientMaster|companies/i', $url))menu-open @endif">
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-th-large"></i>
             <p>Masters<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('/admin/sector'); }}" class="nav-link @if(preg_match('/sector/', $url))active @endif">
-                <p>Sector Management </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ url('/admin/jobrole'); }}" class="nav-link @if(preg_match('/jobrole/', $url))active @endif">
-                <p>Job Role </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ url('/admin/education'); }}" class="nav-link @if(preg_match('/education/', $url))active @endif">
-                <p>Education Qualification </p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="{{ url('/admin/locationcategory'); }}" class="nav-link @if(preg_match('/locationcategory/', $url))active @endif">
-                <p>Location Category Management </p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="{{ url('/admin/usermanagement'); }}" class="nav-link @if(preg_match('/usermanagement/', $url))active @endif">
-                <p>User Management </p>
+              <a href="{{ url('/clientMaster'); }}" class="nav-link @if(preg_match('/clientMaster/', $url))active @endif">
+                <p>Client Management </p>
               </a>
             </li>
             <li class="nav-item ">
               <a href="{{ url('/admin/companies'); }}" class="nav-link @if(preg_match('/companies/', $url))active @endif">
-                <p>Company Management </p>
+                <p>Item Management </p>
               </a>
             </li>
           </ul>
         </li>
         <!-- End of Admin Masters -->
 
+        <li class="nav-item">
+          <a href="{{ url('/createQuatation'); }}" class="nav-link @if(preg_match('/createQuatation/', $url))active @endif">
+          <i class="nav-icon fa fa-calculator" aria-hidden="true"></i>
+            <p>
+              Create Quotation
+            </p>
+          </a>
+        </li>
 
         <li class="nav-header">System Settings</li>
 
