@@ -98,7 +98,7 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                <a href="{{ url('editCustomer/'.$data->id); }}" class="btn-sm btn-warning mx-2"> <i class="fa fa-edit"></i> </a>
+                                                                <a href="{{ url('viewClientDetails/'.$data->id); }}" class="btn-sm btn-warning mx-2"> <i class="fa fa-edit"></i> </a>
                                                                 <a class="btn-sm btn-danger" data-id="{{ $data->id }}" onclick="removeCustomer({{ $data->id }})"> <i class="fa fa-trash"></i> </a>
                                                             </td>
                                                         </tr>

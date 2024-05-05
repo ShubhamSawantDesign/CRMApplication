@@ -35,5 +35,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/doAddCustomer', [MasterController::class, 'doAddCustomer']);
     Route::post('/changeCustomerStatus',[AjaxController::class, 'updateCustomerStatus']);
     Route::post('/removeCustomerdata',[AjaxController::class, 'removeCustomer']);
-     
+    Route::get('/viewClientDetails/{id}', [MasterController::class, 'editClientDetails']);
+    Route::post('/doCustomerUpdate', [MasterController::class, 'doCustomerUpdate']);
 });

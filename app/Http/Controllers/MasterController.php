@@ -40,4 +40,40 @@ class MasterController extends Controller
         Alert::success('Added Client Successfully');
         return redirect()->back();
     }
+
+
+    public function editClientDetails(Request $request,$id)
+    {
+        $customer = DB::table('tbl_customers')->where('id','=',$id)->first();
+        return view('editClient',compact('customer'));
+    }
+
+
+    public function doCustomerUpdate(Request $request){
+   
+        $data = $request->all();
+        $customer_id = $data['customer_id'];
+        $data = $request->except(['_token', 'customer_id']);
+
+        $validatedData = $request->validate([
+            'customer_name' => 'required|string|max:100',
+            'customer_email' => 'required|string|email|max:100',
+            'customer_mobile_no' => 'required|numeric',
+            'address' => 'nullable|string|max:255',
+            'country' => 'required|string|max:100',
+            'state' => 'required|string|max:100',
+            'city' => 'required|string|max:100',
+        ]);
+        // Remove the _token field from the request data
+   
+   
+        // Insert data into the database using DB::table
+        $now = Carbon::now()->toDateTimeString();
+        $data['updated_at'] = $now; // Add created_at timestamp
+        DB::table('tbl_customers')->where('id', '=', $customer_id)->update($data);
+
+        Alert::success('Client Details Updated Successfully');
+        return redirect()->route('clientMaster');
+    }
+
 }
