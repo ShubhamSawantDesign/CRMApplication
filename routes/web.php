@@ -46,4 +46,5 @@ Route::group(['middleware'=>'auth'],function(){
     //All Ajax Request
     Route::post('/removeCustomerdata',[AjaxController::class, 'removeCustomer']);
     Route::post('/changeCustomerStatus',[AjaxController::class, 'updateCustomerStatus']);
+    Route::get('/get-customer-address/{id}', [AjaxController::class, 'getCustomerAddress']);
 });
