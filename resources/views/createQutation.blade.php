@@ -67,7 +67,53 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label>Address</label>
-                                                             <textarea class='form-control' id='address'></textarea>
+                                                             <textarea class='form-control' id='address' placeholder="Enter Address"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-4">
+                                                            <label>Estimate</label>
+                                                             <input type="text" name="estimate" class='form-control' placeholder="EST-202401"></input>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Reference</label>
+                                                             <input type="text" name="reference" class='form-control' placeholder="Reference-202401"></input>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Estimate Date</label>
+                                                             <input type="date" name="estimateDate" class='form-control'></input>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-6">
+                                                            <label>Sales Person</label>
+                                                             <input type="text" name="sales_person" class='form-control' placeholder="Sales Person"></input>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Project Name</label>
+                                                             <input type="text" name="project_name" class='form-control' placeholder="Project Name"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Subject</label>
+                                                                <textarea class='form-control' id='Subject' placeholder="Enter Subject"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Customer Note</label>
+                                                                <textarea class='form-control' id='customerNote' placeholder="Enter Note for Customer"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Terms and Condition</label>
+                                                                <textarea class='form-control' id='termsnconditions' placeholder="Enter Terms and Condition"></textarea>
                                                         </div>
                                                     </div>
 
@@ -82,7 +128,34 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="row form-group">
+                                                        <div class="col-md-4">
+                                                            <label>Total Amount</label>
+                                                                <input type="text" name="total_amount" class='form-control' placeholder="Total Amount"></input>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <hr class="verticle_line" style="">
+                                                    <div class="row form-group">
+                                                        <div class="col-md-4">
+                                                            <label>Enter CGST</label>
+                                                             <input type="text" name="sales_person" class='form-control' placeholder="Enter CGST"></input>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Enter SGST</label>
+                                                             <input type="text" name="project_name" class='form-control' placeholder="Enter SGST Name"></input>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Other Tax such as TCS</label>
+                                                             <input type="text" name="project_name" class='form-control' placeholder="Enter TCS Amount"></input>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <a href="http://dev.trti-maha.in/admin/trainingagency/p1" class="btn btn-default" data-dismiss="modal">Close</a>
+                                                <button type="submit" id="btn-submit" class="btn btn-primary">Create Qutation</button>
                                             </div>
                                             <!-- form ended -->
                                     </div>
