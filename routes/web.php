@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\QutationController;
+
 
 
 
@@ -32,9 +34,17 @@ Auth::routes();
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::get('/clientMaster', [MasterController::class, 'clientMaster'])->name('clientMaster');
-    Route::post('/doAddCustomer', [MasterController::class, 'doAddCustomer']);
-    Route::post('/changeCustomerStatus',[AjaxController::class, 'updateCustomerStatus']);
-    Route::post('/removeCustomerdata',[AjaxController::class, 'removeCustomer']);
     Route::get('/viewClientDetails/{id}', [MasterController::class, 'editClientDetails']);
+    Route::get('/createQuatation', [QutationController::class, 'createQuatation']);
+
+
+    //All Post Request
     Route::post('/doCustomerUpdate', [MasterController::class, 'doCustomerUpdate']);
+    Route::post('/doAddCustomer', [MasterController::class, 'doAddCustomer']);
+
+
+    //All Ajax Request
+    Route::post('/removeCustomerdata',[AjaxController::class, 'removeCustomer']);
+    Route::post('/changeCustomerStatus',[AjaxController::class, 'updateCustomerStatus']);
+    Route::get('/get-customer-address/{id}', [AjaxController::class, 'getCustomerAddress']);
 });

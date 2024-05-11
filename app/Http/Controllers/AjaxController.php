@@ -51,4 +51,15 @@ class AjaxController extends Controller
             return response()->json('error');
         }
     }
+
+    public function getCustomerAddress($id)
+    {
+        $address = DB::table('tbl_customers')->where('id', $id)->value('address');
+
+        if ($address) {
+            return response()->json($address);
+        } else {
+            return response()->json(['error' => 'Address not found'], 404);
+        }
+    }
 }
