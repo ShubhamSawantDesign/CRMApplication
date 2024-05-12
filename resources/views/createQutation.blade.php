@@ -50,9 +50,8 @@
                                 <div class="tab-content" id="custom-tabs-three-tabContent">
                                     <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
                                         <!-- Submit Form -->
-                                        <form action="{{ url('doCustomerUpdate'); }}" method="POST">
+                                        <form action="{{ url('doCreateQuotation'); }}" method="POST">
                                             @csrf 
-                                            <input type="hidden" name="customer_id" value="" />
                                             <div class="table-responsive data-table-wrapper" id="">
                                                 <div class="modal-body">
                                                     <div class="row form-group">
