@@ -154,7 +154,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer justify-content-between">
-                                                <a href="http://dev.trti-maha.in/admin/trainingagency/p1" class="btn btn-default" data-dismiss="modal">Close</a>
+                                                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
                                                 <button type="submit" id="btn-submit" class="btn btn-primary">Create Qutation</button>
                                             </div>
                                             <!-- form ended -->
@@ -195,17 +195,17 @@
     });
     </script>
 <script>
-    var devcostimpcount =  0;
+    var items_count =  0;
     $(document).ready(function() {
 
     $('a[name=addNewItem]').click(function (event) {
-        devcostimpcount++;
+        items_count++;
         var itemContainer = $('#itemContainer');
-        var newDiv = `<div class="row direct_price_section" id="direct_dev_cost_${devcostimpcount}">
+        var newDiv = `<div class="row direct_price_section" id="invoice_items_${items_count}">
             <div class="col-2 col-sm-1">
                 <div class="form-group">
                 <label>Sr No</label>
-                <input type="input" class="form-control" name="sr_no[]" value="${devcostimpcount}" />
+                <input type="input" class="form-control" name="sr_no[]" value="${items_count}" />
                 </div>
             </div>
             <div class="col-3 col-sm-3">
@@ -217,27 +217,59 @@
             <div class="col-2 col-sm-2">
                 <div class="form-group">
                     <label>Quantity</label>
-                    <input type="input" class="form-control input_decimal_field quantity" id="quantity_${devcostimpcount}" name="quantity[]" placeholder="Enter The Quantity" />
+                    <input type="input" class="form-control input_decimal_field quantity" id="quantity_${items_count}" data-unique-id=${items_count} name="quantity[]" placeholder="Enter The Quantity" />
                 </div>
             </div>
             <div class="col-2 col-sm-2">
                 <div class="form-group">
                     <label>Cost</label>
-                    <input type="input" class="form-control input_decimal_field dev_price" id="cost_${devcostimpcount}" name="cost_[]" placeholder="Enter Cost" />
+                    <input type="input" class="form-control input_decimal_field cost" id="cost_${items_count}" data-unique-id=${items_count} name="cost_[]" placeholder="Enter Cost" />
                 </div>
             </div>
             <div class="col-2 col-sm-2">
                 <div class="form-group">
                     <label>Total Cost</label>
-                    <input type="input" class="form-control input_decimal_field dev_price" id="total_Cost_${devcostimpcount}" name="total_Cost[]" placeholder="Enter Dev Price" />
+                    <input type="input" class="form-control input_decimal_field " id="total_Cost_${items_count}" name="total_Cost[]" placeholder="Enter Dev Price" />
                 </div>
             </div>
             <div class="col-1 col-sm-1">
-                <button class="btn btn-danger removeDev" data-unique-id=${devcostimpcount} type="button">Remove</button>
+                <button class="btn btn-danger removeDev" data-unique-id=${items_count} type="button">Remove</button>
             </div>
         </div>`;
         itemContainer.append(newDiv);
     });
+
+    $(document).on('click', '.removeDev', function(event) {
+        var idValue = $(this).data('unique-id');
+        $('#invoice_items_' + idValue).remove();
+        items_count--;
+        $(this).calcualteTotalDirectDevCost();
+    });
+
+   
+        $(document).on('change', '.quantity', function(event) {
+            var idValue = $(this).data('unique-id');
+            if($('#cost_' + idValue).val() !== '')
+            {
+            var Quantity = $(this).val();
+            var cost = $('#cost_' + idValue).val();
+            var total_cost = Quantity * cost;
+            $('#total_Cost_' + idValue).val(total_cost);
+
+            }
+        });
+
+        $(document).on('change', '.cost', function(event) {
+            var idValue = $(this).data('unique-id');
+            if($('#quantity_' + idValue).val() !== '')
+            {
+            var cost = $(this).val();
+            var Quantity = $('#quantity_' + idValue).val();
+            var total_cost = Quantity * cost;
+            $('#total_Cost_' + idValue).val(total_cost);
+            }
+        });
+
 });
 
 
