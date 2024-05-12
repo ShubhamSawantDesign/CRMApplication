@@ -43,7 +43,7 @@ $('a[name=addNewItem]').click(function (event) {
         <div class="col-2 col-sm-2">
             <div class="form-group">
                 <label>Cost</label>
-                <input type="number" class="form-control input_decimal_field cost" id="cost_${items_count}" data-unique-id=${items_count} name="cost_[]" placeholder="Enter Cost" />
+                <input type="number" class="form-control input_decimal_field cost" id="cost_${items_count}" data-unique-id=${items_count} name="cost[]" placeholder="Enter Cost" />
             </div>
         </div>
         <div class="col-2 col-sm-2">

@@ -41,6 +41,8 @@ Route::group(['middleware'=>'auth'],function(){
     //All Post Request
     Route::post('/doCustomerUpdate', [MasterController::class, 'doCustomerUpdate']);
     Route::post('/doAddCustomer', [MasterController::class, 'doAddCustomer']);
+    Route::post('/doCreateQuotation', [QutationController::class, 'doCreateQuotation']);
+
 
 
     //All Ajax Request
