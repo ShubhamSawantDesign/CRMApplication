@@ -131,7 +131,7 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-4">
                                                             <label>Total Amount</label>
-                                                                <input type="text" name="total_amount" class='form-control' placeholder="Total Amount"></input>
+                                                                <input type="text" name="total_amount" id="total_amount" class='form-control' placeholder="Total Amount"></input>
                                                         </div>
                                                     </div>
 
@@ -243,7 +243,7 @@
         var idValue = $(this).data('unique-id');
         $('#invoice_items_' + idValue).remove();
         items_count--;
-        $(this).calcualteTotalDirectDevCost();
+        $(this).calcualteTotalCost();
     });
 
    
@@ -255,7 +255,7 @@
             var cost = $('#cost_' + idValue).val();
             var total_cost = Quantity * cost;
             $('#total_Cost_' + idValue).val(total_cost);
-
+            $(this).calcualteTotalCost();
             }
         });
 
@@ -267,11 +267,23 @@
             var Quantity = $('#quantity_' + idValue).val();
             var total_cost = Quantity * cost;
             $('#total_Cost_' + idValue).val(total_cost);
+            $(this).calcualteTotalCost();
             }
         });
 
 });
 
+$.fn.calcualteTotalCost = function () {
+    var totalCost_calculation = 0;
+    for (var i = 1; i <= items_count; i++) {
+        var cost = parseFloat($('#total_Cost_' + i).val());
+        if (isNaN(cost)) {
+            cost = 0;
+        }
+        totalCost_calculation += cost;
+    }
+    $('#total_amount').val(totalCost_calculation.toFixed(4));
+}
 
 </script>
 @endsection
