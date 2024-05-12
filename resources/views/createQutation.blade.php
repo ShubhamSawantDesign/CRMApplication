@@ -128,33 +128,35 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row form-group">
-                                                        <div class="col-md-4">
-                                                            <label>Total Amount</label>
-                                                                <input type="text" name="total_amount" class='form-control' placeholder="Total Amount"></input>
-                                                        </div>
-                                                    </div>
-
-
                                                     <hr class="verticle_line" style="">
                                                     <div class="row form-group">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
+                                                            <label>Total Amount</label>
+                                                                <input type="number" name="total_amount" id="total_amount" class='form-control' placeholder="Total Amount"></input>
+                                                        </div>
+                                                        <div class="col-md-2">
                                                             <label>Enter CGST</label>
-                                                             <input type="text" name="sales_person" class='form-control' placeholder="Enter CGST"></input>
+                                                             <input type="number" name="cgst" id="cgst" class='form-control' placeholder="Enter CGST"></input>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
                                                             <label>Enter SGST</label>
-                                                             <input type="text" name="project_name" class='form-control' placeholder="Enter SGST Name"></input>
+                                                             <input type="number" name="sgst" id="sgst" class='form-control' placeholder="Enter SGST Name"></input>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
                                                             <label>Other Tax such as TCS</label>
-                                                             <input type="text" name="project_name" class='form-control' placeholder="Enter TCS Amount"></input>
+                                                             <input type="number" name="other" id="other" class='form-control' placeholder="Enter TCS Amount"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-2">
+                                                            <label>Final Amount</label>
+                                                                <input type="number" name="final_amount" id="final_amount" class='form-control' placeholder="Total Amount"></input>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer justify-content-between">
-                                                <a href="http://dev.trti-maha.in/admin/trainingagency/p1" class="btn btn-default" data-dismiss="modal">Close</a>
+                                                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
                                                 <button type="submit" id="btn-submit" class="btn btn-primary">Create Qutation</button>
                                             </div>
                                             <!-- form ended -->
@@ -176,70 +178,4 @@
 </div>
 <!-- ./wrapper -->
 <!-- Add Client Moodal -->
-<script>
-    document.getElementById('customer').addEventListener('change', function() {
-        var customerId = this.value;
-        
-        // Making an Ajax request
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/get-customer-address/' + customerId, true);
-        
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Update the address in the HTML
-                document.getElementById('address').value = xhr.responseText;
-            }
-        };
-        
-        xhr.send();
-    });
-    </script>
-<script>
-    var devcostimpcount =  0;
-    $(document).ready(function() {
-
-    $('a[name=addNewItem]').click(function (event) {
-        devcostimpcount++;
-        var itemContainer = $('#itemContainer');
-        var newDiv = `<div class="row direct_price_section" id="direct_dev_cost_${devcostimpcount}">
-            <div class="col-2 col-sm-1">
-                <div class="form-group">
-                <label>Sr No</label>
-                <input type="input" class="form-control" name="sr_no[]" value="${devcostimpcount}" />
-                </div>
-            </div>
-            <div class="col-3 col-sm-3">
-                <div class="form-group">
-                <label>Item</label>
-                <input type="input" class="form-control" id=""  name="item[]" placeholder="Enter Particulars" />
-                </div>
-            </div>
-            <div class="col-2 col-sm-2">
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="input" class="form-control input_decimal_field quantity" id="quantity_${devcostimpcount}" name="quantity[]" placeholder="Enter The Quantity" />
-                </div>
-            </div>
-            <div class="col-2 col-sm-2">
-                <div class="form-group">
-                    <label>Cost</label>
-                    <input type="input" class="form-control input_decimal_field dev_price" id="cost_${devcostimpcount}" name="cost_[]" placeholder="Enter Cost" />
-                </div>
-            </div>
-            <div class="col-2 col-sm-2">
-                <div class="form-group">
-                    <label>Total Cost</label>
-                    <input type="input" class="form-control input_decimal_field dev_price" id="total_Cost_${devcostimpcount}" name="total_Cost[]" placeholder="Enter Dev Price" />
-                </div>
-            </div>
-            <div class="col-1 col-sm-1">
-                <button class="btn btn-danger removeDev" data-unique-id=${devcostimpcount} type="button">Remove</button>
-            </div>
-        </div>`;
-        itemContainer.append(newDiv);
-    });
-});
-
-
-</script>
 @endsection
