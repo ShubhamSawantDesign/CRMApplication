@@ -112,14 +112,10 @@
 </script> 
 
 <script src="{{ url('dist/js/adminlte.js?v=1'); }}"></script>
-<script src="{{ url('dist/js/pages/dashboard.js?v=1'); }}"></script>
 @include('sweetalert::alert')
 <script src="{{ url('customJS/popupmodal.js'); }}"></script>
-<script src="{{ url('customJS/jqueryAjaxTablecall.js'); }}"></script>
-<script src="{{ url('customJS/dashboardOperation.jquery.js'); }}"></script>
 <script src="{{ url('js/changePassword.js'); }}"></script>
 <script src="{{ url('plugins/select2/js/select2.min.js'); }}"></script>
 <script src="{{ url('customJS/function.js'); }}"></script>
-<script src="{{ url('customJS/inputValidation.jquery.js'); }}"></script>
 <!-- Data Table Script -->
 </html>

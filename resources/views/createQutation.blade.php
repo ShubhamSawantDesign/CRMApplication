@@ -128,27 +128,29 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row form-group">
-                                                        <div class="col-md-4">
-                                                            <label>Total Amount</label>
-                                                                <input type="text" name="total_amount" id="total_amount" class='form-control' placeholder="Total Amount"></input>
-                                                        </div>
-                                                    </div>
-
-
                                                     <hr class="verticle_line" style="">
                                                     <div class="row form-group">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
+                                                            <label>Total Amount</label>
+                                                                <input type="number" name="total_amount" id="total_amount" class='form-control' placeholder="Total Amount"></input>
+                                                        </div>
+                                                        <div class="col-md-2">
                                                             <label>Enter CGST</label>
-                                                             <input type="text" name="sales_person" class='form-control' placeholder="Enter CGST"></input>
+                                                             <input type="number" name="cgst" id="cgst" class='form-control' placeholder="Enter CGST"></input>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
                                                             <label>Enter SGST</label>
-                                                             <input type="text" name="project_name" class='form-control' placeholder="Enter SGST Name"></input>
+                                                             <input type="number" name="sgst" id="sgst" class='form-control' placeholder="Enter SGST Name"></input>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2">
                                                             <label>Other Tax such as TCS</label>
-                                                             <input type="text" name="project_name" class='form-control' placeholder="Enter TCS Amount"></input>
+                                                             <input type="number" name="other" id="other" class='form-control' placeholder="Enter TCS Amount"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-2">
+                                                            <label>Final Amount</label>
+                                                                <input type="number" name="final_amount" id="final_amount" class='form-control' placeholder="Total Amount"></input>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,114 +178,4 @@
 </div>
 <!-- ./wrapper -->
 <!-- Add Client Moodal -->
-<script>
-    document.getElementById('customer').addEventListener('change', function() {
-        var customerId = this.value;
-        
-        // Making an Ajax request
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/get-customer-address/' + customerId, true);
-        
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Update the address in the HTML
-                document.getElementById('address').value = xhr.responseText;
-            }
-        };
-        
-        xhr.send();
-    });
-    </script>
-<script>
-    var items_count =  0;
-    $(document).ready(function() {
-
-    $('a[name=addNewItem]').click(function (event) {
-        items_count++;
-        var itemContainer = $('#itemContainer');
-        var newDiv = `<div class="row direct_price_section" id="invoice_items_${items_count}">
-            <div class="col-2 col-sm-1">
-                <div class="form-group">
-                <label>Sr No</label>
-                <input type="input" class="form-control" name="sr_no[]" value="${items_count}" />
-                </div>
-            </div>
-            <div class="col-3 col-sm-3">
-                <div class="form-group">
-                <label>Item</label>
-                <input type="input" class="form-control" id=""  name="item[]" placeholder="Enter Particulars" />
-                </div>
-            </div>
-            <div class="col-2 col-sm-2">
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="input" class="form-control input_decimal_field quantity" id="quantity_${items_count}" data-unique-id=${items_count} name="quantity[]" placeholder="Enter The Quantity" />
-                </div>
-            </div>
-            <div class="col-2 col-sm-2">
-                <div class="form-group">
-                    <label>Cost</label>
-                    <input type="input" class="form-control input_decimal_field cost" id="cost_${items_count}" data-unique-id=${items_count} name="cost_[]" placeholder="Enter Cost" />
-                </div>
-            </div>
-            <div class="col-2 col-sm-2">
-                <div class="form-group">
-                    <label>Total Cost</label>
-                    <input type="input" class="form-control input_decimal_field " id="total_Cost_${items_count}" name="total_Cost[]" placeholder="Enter Dev Price" />
-                </div>
-            </div>
-            <div class="col-1 col-sm-1">
-                <button class="btn btn-danger removeDev" data-unique-id=${items_count} type="button">Remove</button>
-            </div>
-        </div>`;
-        itemContainer.append(newDiv);
-    });
-
-    $(document).on('click', '.removeDev', function(event) {
-        var idValue = $(this).data('unique-id');
-        $('#invoice_items_' + idValue).remove();
-        items_count--;
-        $(this).calcualteTotalCost();
-    });
-
-   
-        $(document).on('change', '.quantity', function(event) {
-            var idValue = $(this).data('unique-id');
-            if($('#cost_' + idValue).val() !== '')
-            {
-            var Quantity = $(this).val();
-            var cost = $('#cost_' + idValue).val();
-            var total_cost = Quantity * cost;
-            $('#total_Cost_' + idValue).val(total_cost);
-            $(this).calcualteTotalCost();
-            }
-        });
-
-        $(document).on('change', '.cost', function(event) {
-            var idValue = $(this).data('unique-id');
-            if($('#quantity_' + idValue).val() !== '')
-            {
-            var cost = $(this).val();
-            var Quantity = $('#quantity_' + idValue).val();
-            var total_cost = Quantity * cost;
-            $('#total_Cost_' + idValue).val(total_cost);
-            $(this).calcualteTotalCost();
-            }
-        });
-
-});
-
-$.fn.calcualteTotalCost = function () {
-    var totalCost_calculation = 0;
-    for (var i = 1; i <= items_count; i++) {
-        var cost = parseFloat($('#total_Cost_' + i).val());
-        if (isNaN(cost)) {
-            cost = 0;
-        }
-        totalCost_calculation += cost;
-    }
-    $('#total_amount').val(totalCost_calculation.toFixed(4));
-}
-
-</script>
 @endsection
