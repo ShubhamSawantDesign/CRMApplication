@@ -33,6 +33,9 @@ class QutationController extends Controller
             'estimateDate' => $data['estimateDate'],
             'sales_person' => $data['sales_person'],
             'project_name' => $data['project_name'],
+            'subject' => $data['subject'],
+            'customer_note' => $data['customerNote'],
+            'tnc' => $data['termsnconditions'],
             'total_amount' => $data['total_amount'],
             'cgst' => $data['cgst'],
             'sgst' => $data['sgst'],
@@ -76,7 +79,7 @@ class QutationController extends Controller
         
         $invoice_Details = DB::table('tbl_invoice_details')
         ->join('tbl_customers', 'tbl_invoice_details.customer', '=', 'tbl_customers.id')
-        ->select('tbl_customers.customer_name', 'tbl_invoice_details.*')
+        ->select('tbl_customers.customer_name', 'tbl_customers.address','tbl_invoice_details.*')
         ->where('tbl_invoice_details.id','=',$invoice_id)
         ->first();
 
