@@ -1,3 +1,19 @@
+
+var table = $(".data-table").DataTable({
+    "responsive": true,
+    "autoWidth": false,
+    "paging": true,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "fixedHeader": {
+        header: true,
+        headerOffset: 50
+    },
+});
+
+
 document.getElementById('customer').addEventListener('change', function() {
     var customerId = this.value;
     

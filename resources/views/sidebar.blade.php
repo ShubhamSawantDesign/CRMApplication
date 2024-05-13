@@ -128,6 +128,15 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="{{ url('/listQutation'); }}" class="nav-link @if(preg_match('/listQutation/', $url))active @endif">
+          <i class="nav-icon fa fa-list" aria-hidden="true"></i>
+            <p>
+              List Quotation
+            </p>
+          </a>
+        </li>
+
         <li class="nav-header">System Settings</li>
 
         <li class="nav-item">

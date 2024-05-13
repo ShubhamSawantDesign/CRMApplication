@@ -98,21 +98,21 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label>Subject</label>
-                                                                <textarea class='form-control' id='Subject' placeholder="Enter Subject"></textarea>
+                                                                <textarea class='form-control' name='subject' id='Subject' placeholder="Enter Subject"></textarea>
                                                         </div>
                                                     </div>
 
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label>Customer Note</label>
-                                                                <textarea class='form-control' id='customerNote' placeholder="Enter Note for Customer"></textarea>
+                                                                <textarea class='form-control' name='customerNote' id='customerNote' placeholder="Enter Note for Customer"></textarea>
                                                         </div>
                                                     </div>
 
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label>Terms and Condition</label>
-                                                                <textarea class='form-control' id='termsnconditions' placeholder="Enter Terms and Condition"></textarea>
+                                                                <textarea class='form-control' name='termsnconditions' id='termsnconditions' placeholder="Enter Terms and Condition"></textarea>
                                                         </div>
                                                     </div>
 
