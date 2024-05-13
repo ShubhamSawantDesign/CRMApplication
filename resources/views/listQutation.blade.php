@@ -89,7 +89,7 @@
                                                             <td>{{ $data->project_name }}</td>
                                                             <td>
                                                                 <a href="{{ url('viewClientDetails/'.$data->id); }}" class="btn-sm btn-warning mx-2"> <i class="fa fa-edit"></i> </a>
-                                                                <a href="{{ url('/generate-quotation'); }}" class="btn-sm btn-danger" > <i class="fas fa-file-pdf"></i> </a>
+                                                                <a href="{{ url('/generate-quotation/'.$data->id); }}" class="btn-sm btn-danger" > <i class="fas fa-file-pdf"></i> </a>
                                                             </td>
                                                         </tr>
                                                         @endforeach

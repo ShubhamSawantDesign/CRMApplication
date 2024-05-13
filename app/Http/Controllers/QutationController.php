@@ -71,20 +71,19 @@ class QutationController extends Controller
          return view('listQutation',compact('invoice_Details'));
     }
 
-    public function generateQuotation()
+    public function generateQuotation($invoice_id)
     {
-        $data = [
-            'customer_name' => 'John Doe',
-            'items' => [
-                ['description' => 'Item 1', 'price' => 100],
-                ['description' => 'Item 2', 'price' => 150],
-                // Add more items as needed
-            ],
-            'total' => 250, // Calculate total price
-        ];
+        
+        $invoice_Details = DB::table('tbl_invoice_details')
+        ->join('tbl_customers', 'tbl_invoice_details.customer', '=', 'tbl_customers.id')
+        ->select('tbl_customers.customer_name', 'tbl_invoice_details.*')
+        ->where('tbl_invoice_details.id','=',$invoice_id)
+        ->first();
+
+        $invoice_items = DB::table('tbl_invoice_items')->where('invoice_id','=',$invoice_id)->get();
     
         $mpdf = new Mpdf();
-        $html = view('quotation', $data)->render();
+        $html = view('quotation', compact('invoice_Details', 'invoice_items'))->render();
     
         $mpdf->WriteHTML($html);
         $mpdf->Output();
