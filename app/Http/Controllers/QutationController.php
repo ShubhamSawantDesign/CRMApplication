@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Mpdf\Mpdf;
 use Alert;
 
 class QutationController extends Controller
@@ -25,7 +26,7 @@ class QutationController extends Controller
         $total_Cost = $request->input('total_Cost');
 
 
-        $inoivce_id = DB::table('tbl_invoice_details')->insertGetId([
+        $invoice_id = DB::table('tbl_invoice_details')->insertGetId([
             'customer' => $data['customer'],
             'estimate_id' => $data['estimate'],
             'reference_id' => $data['reference'],
@@ -46,7 +47,7 @@ class QutationController extends Controller
         for ($i = 0; $i < $count; $i++) {
 
             DB::table('tbl_invoice_items')->insert([
-                'invoice_id' => $inoivce_id,
+                'invoice_id' => $invoice_id,
                 'item' => $item[$i],
                 'quantity' => $quantity[$i],
                 'cost' => $cost[$i],
@@ -57,7 +58,36 @@ class QutationController extends Controller
 
         }
         Alert::success('Quatation Created Successfully');
-        return redirect()->back();
+        return redirect('/listQutation');
+    }
+
+    public function listQutation(Request $request){
+        $data = $request->all();
+        $invoice_Details = DB::table('tbl_invoice_details')
+        ->join('tbl_customers', 'tbl_invoice_details.customer', '=', 'tbl_customers.id')
+        ->select('tbl_customers.customer_name', 'tbl_invoice_details.*')
+        ->get();
+
+         return view('listQutation',compact('invoice_Details'));
+    }
+
+    public function generateQuotation()
+    {
+        $data = [
+            'customer_name' => 'John Doe',
+            'items' => [
+                ['description' => 'Item 1', 'price' => 100],
+                ['description' => 'Item 2', 'price' => 150],
+                // Add more items as needed
+            ],
+            'total' => 250, // Calculate total price
+        ];
+    
+        $mpdf = new Mpdf();
+        $html = view('quotation', $data)->render();
+    
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 
 }

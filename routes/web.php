@@ -36,6 +36,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/clientMaster', [MasterController::class, 'clientMaster'])->name('clientMaster');
     Route::get('/viewClientDetails/{id}', [MasterController::class, 'editClientDetails']);
     Route::get('/createQuatation', [QutationController::class, 'createQuatation']);
+    Route::get('/listQutation', [QutationController::class, 'listQutation']);
+    Route::get('/generate-quotation', [QutationController::class, 'generateQuotation']);
 
 
     //All Post Request
