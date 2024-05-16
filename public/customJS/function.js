@@ -71,25 +71,25 @@ $('a[name=addNewItem]').click(function (event) {
         <div class="col-2 col-sm-1">
             <div class="form-group">
                 <label>Sub Cost</label>
-                <input type="number" class="form-control input_decimal_field " id="sub_cost_${items_count}" name="total_Cost[]" placeholder="Sub Cost" />
+                <input type="number" class="form-control input_decimal_field " id="sub_cost_${items_count}" name="sub_cost[]" placeholder="Sub Cost" readonly/>
             </div>
         </div>
         <div class="col-2 col-sm-1">
             <div class="form-group">
                 <label>GST Rate %</label>
-                <input type="number" class="form-control input_decimal_field gst_rate" id="gst_rate_${items_count}"  data-unique-id=${items_count} name="total_Cost[]" placeholder="GST Rate" />
+                <input type="number" class="form-control input_decimal_field gst_rate" id="gst_rate_${items_count}"  data-unique-id=${items_count} name="gst_rate[]" placeholder="GST Rate" />
             </div>
         </div>
         <div class="col-2 col-sm-1">
             <div class="form-group">
                 <label>GST Amount</label>
-                <input type="number" class="form-control input_decimal_field " id="gst_amount_${items_count}" name="total_Cost[]" placeholder="GST Amount" />
+                <input type="number" class="form-control input_decimal_field " id="gst_amount_${items_count}" name="gst_amount[]" placeholder="GST Amount" readonly/>
             </div>
         </div>
         <div class="col-2 col-sm-1">
             <div class="form-group">
                 <label>Total Amount</label>
-                <input type="number" class="form-control input_decimal_field " id="total_amount_${items_count}" name="total_Cost[]" placeholder="Total Amount" />
+                <input type="number" class="form-control input_decimal_field " id="total_amount_${items_count}" name="total_Cost[]" placeholder="Total Amount" readonly/>
             </div>
         </div>
         <div class="col-1 col-sm-1">

@@ -1,3 +1,6 @@
+@php
+use App\Helpers\Helper;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -150,7 +153,7 @@
 
     <div class="containter-fluid">
       <p class="text-uppercase quotation-text mb-0">Quotation</p>
-      <p class="company-name mt-3 fw-bold">Company Name</p>
+      <p class="company-name mt-3 fw-bold">Company Name: {{ $invoice_Details->customer_name }}</p>
     </div>
     <div class="container-fluid">
       <table class="w-100">
@@ -166,7 +169,7 @@
                   <p class="font-14 text-end">Quotation #:</p>
                 </td>
                 <td>
-                  <p class="font-14 text-end">ICS/QT/2024/01</p>
+                  <p class="font-14 text-end">{{ $invoice_Details->estimate_id }}</p>
                 </td>
                 <td>
 
@@ -187,7 +190,7 @@
                   <p class="font-14 text-end">Creation Date:</p>
                 </td>
                 <td>
-                  <p class="font-14 text-end">14/05/2024</p>
+                  <p class="font-14 text-end">{{ $invoice_Details->estimateDate }}</p>
                 </td>
               </tr>
 
@@ -196,9 +199,7 @@
                   <p class="font-14 text-end">Prepared By:</p>
                 </td>
                 <td>
-                  <p class="font-14 text-end">Name Of Person
-
-                  </p>
+                  <p class="font-14 text-end">{{ $invoice_Details->sales_person }}</p>
                 </td>
               </tr>
 
@@ -228,7 +229,7 @@
         <tr>
           <td class="text-justify">
             <p class="font-14 pe-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores incidunt laudantium quis distinctio autem, velit exercitationem necessitatibus. Vero pariatur accusamus deserunt rem. Dolorum eaque nisi nemo reprehenderit itaque deserunt ratione!
+                {{ $invoice_Details->subject }}
             </p>
           </td>
         </tr>
@@ -245,12 +246,12 @@
               <p class="mb-0 font-14">Quated for:</p>
             </td>
             <td class="bg-light">
-              <p class=" px-2 mb-0 font-14">Name Of the Company</p>
+              <p class=" px-2 mb-0 font-14">Name Of the Company {{ $invoice_Details->customer_name }}</p>
             </td>
           </tr>
           <tr>
             <td class="bg-light-yellow">
-              <p class=" px-2  mb-0 font-14">Address Line 1</p>
+              <p class=" px-2  mb-0 font-14">Address Line 1 {{ $invoice_Details->address }}</p>
             </td>
           </tr>
           <tr>
@@ -302,28 +303,24 @@
           </thead>
 
           <tbody>
+
+          @php
+          $sn = 1;
+          @endphp
+          @foreach($invoice_items as $item)
             <tr>
-              <td class="p-2 font-14 text-center"> 1 </td>
-              <td class="p-2 font-14"> PRD-2024-0011 </td>
-              <td class="p-2 font-14" style="width: 13%;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-              <td class="p-2 font-14">20</td>
-              <td class="p-2 font-14">2,000.00/-</td>
-              <td class="p-2 font-14">40,000.00/-</td>
-              <td class="p-2 font-14">ICGST 18%</td>
-              <td class="p-2 font-14">7,200.00/-</td>
-              <td class="p-2 font-14">47,200.00/-</td>
+              <td class="p-2 font-14 text-center">{{ $sn++; }}</td>
+              <td class="p-2 font-14"> {{ $item->item }} </td>
+              <td class="p-2 font-14" style="width: 13%;"> {{ $item->description }}</td>
+              <td class="p-2 font-14">{{ $item->quantity }}</td>
+              <td class="p-2 font-14">{{ $item->unit_price }}/-</td>
+              <td class="p-2 font-14">{{ $item->gst_amount }}/-</td>
+              <td class="p-2 font-14">{{ $item->gst_rate }}%</td>
+              <td class="p-2 font-14">{{ $item->gst_amount }}/-</td>
+              <td class="p-2 font-14">{{ $item->total_amount }}/-</td>
             </tr>
-            <tr>
-              <td class="p-2 font-14 text-center"> 1 </td>
-              <td class="p-2 font-14"> PRD-2024-0011 </td>
-              <td class="p-2 font-14" style="width: 13%;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-              <td class="p-2 font-14">20</td>
-              <td class="p-2 font-14">2,000.00/-</td>
-              <td class="p-2 font-14">40,000.00/-</td>
-              <td class="p-2 font-14">ICGST 18%</td>
-              <td class="p-2 font-14">7,200.00/-</td>
-              <td class="p-2 font-14">47,200.00/-</td>
-            </tr>
+          @endforeach
+
           </tbody>
           <tfoot>
             <tr>
@@ -332,11 +329,11 @@
               <td class="p-2 font-14"></td>
               <td class="p-2 font-14"></td>
 
-              <td class="p-2 font-14 text-end fw-bold" colspan="2">80,000.00/-
+              <td class="p-2 font-14 text-end fw-bold" colspan="2">{{ $invoice_Details->sub_total_amount }}/-
               </td>
-              <td class="p-2 font-14 text-end fw-bold" colspan="2">14,400.00/-
+              <td class="p-2 font-14 text-end fw-bold" colspan="2">{{ $invoice_Details->total_gst_amount }}/-
               </td>
-              <td class="p-2 font-14 text-end fw-bold">94,400.00/-
+              <td class="p-2 font-14 text-end fw-bold">{{ $invoice_Details->final_amount }}/-
               </td>
             </tr>
           </tfoot>
@@ -445,13 +442,13 @@
               <td class="font-14 text-end" style="width: 25%;">&nbsp;</td>
             </tr>
             <tr>
-              <td class="font-14 px-2 text-white" style="width: 75%;">Total GST ( Fourteen Thousands & Four Hundred Only )</td>
-              <td class="font-14 text-end text-white" style="width: 25%;">14,400.00 INR</td>
+              <td class="font-14 px-2 text-white" style="width: 75%;">Total GST ( {{ Helper::convertToWords($invoice_Details->total_gst_amount) }} )</td>
+              <td class="font-14 text-end text-white" style="width: 25%;">{{ $invoice_Details->total_gst_amount }} INR</td>
               <td class="font-14 text-end" style="width: 25%;">&nbsp;</td>
             </tr>
             <tr>
-              <td class="font-14 px-2 text-white" style="width: 75%;">Total ( Ninty Four Thousands & Four Hundred Only )</td>
-              <td class="font-14 text-end text-white" style="width: 25%;">94,400.00 INR</td>
+              <td class="font-14 px-2 text-white" style="width: 75%;">Total ( {{ Helper::convertToWords($invoice_Details->final_amount) }} )</td>
+              <td class="font-14 text-end text-white" style="width: 25%;">{{ $invoice_Details->final_amount }} INR</td>
               <td class="font-14 text-end" style="width: 25%;">&nbsp;</td>
             </tr>
           </tfoot>
@@ -466,7 +463,7 @@
         <div class="terms-condition">
           <p class="font-14 fw-bold">Terms & Condition</p>
 
-          <p class="font-14 mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum deserunt rerum nulla a voluptatum est architecto, quisquam consequuntur consequatur non incidunt nam deleniti quos, repellat aperiam perspiciatis dolores fuga magni?</p>
+          <p class="font-14 mb-0"> {{ $invoice_Details->tnc }} </p>
           <p class="font-14">View at: <a href="https://icspune.com/">https://icspune.com/</a></p>
         </div>
       </section>

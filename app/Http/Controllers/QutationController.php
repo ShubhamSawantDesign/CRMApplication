@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DB;
 use Alert;
+use Helper;
 
 class QutationController extends Controller
 {
@@ -21,10 +22,16 @@ class QutationController extends Controller
     {
         $data = $request->all();
         $count = count($data['item']);
+
+
         $item = $request->input('item');
+        $description = $request->input('description');
         $quantity = $request->input('quantity');
-        $cost = $request->input('cost');
-        $total_Cost = $request->input('total_Cost');
+        $unit_price = $request->input('unit_price');
+        $sub_cost = $request->input('sub_cost');
+        $gst_rate = $request->input('gst_rate');
+        $gst_amount = $request->input('gst_amount');
+        $total_amount = $request->input('total_Cost');
 
 
         $invoice_id = DB::table('tbl_invoice_details')->insertGetId([
@@ -37,10 +44,8 @@ class QutationController extends Controller
             'subject' => $data['subject'],
             'customer_note' => $data['customerNote'],
             'tnc' => $data['termsnconditions'],
-            'total_amount' => $data['total_amount'],
-            'cgst' => $data['cgst'],
-            'sgst' => $data['sgst'],
-            'other_cost' => $data['other'],
+            'sub_total_amount' => $data['sub_total_amount'],
+            'total_gst_amount' => $data['gst_total_amount'],
             'final_amount' => $data['final_amount'],
             'created_by' => Auth::guard('admin')->User()->user_id,
             'created_at' => now(), // If you want to set created_at and updated_at timestamps
@@ -53,9 +58,13 @@ class QutationController extends Controller
             DB::table('tbl_invoice_items')->insert([
                 'invoice_id' => $invoice_id,
                 'item' => $item[$i],
+                'description' => $description[$i],
                 'quantity' => $quantity[$i],
-                'cost' => $cost[$i],
-                'total_cost' => $total_Cost[$i],
+                'unit_price' => $unit_price[$i],
+                'sub_cost' => $sub_cost[$i],
+                'gst_rate' => $gst_rate[$i],
+                'gst_amount' => $gst_amount[$i],
+                'total_amount' => $total_amount[$i],
                 'created_at' => now(),
                 'created_by' => Auth::guard('admin')->User()->user_id,
             ]);

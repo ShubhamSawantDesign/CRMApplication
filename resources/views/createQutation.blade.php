@@ -131,15 +131,15 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-2">
                                                             <label>Sub Total</label>
-                                                             <input type="number" name="sub_total_amount" id="sub_total_amount" class='form-control' placeholder="Sub Total Amount"></input>
+                                                             <input type="number" name="sub_total_amount" id="sub_total_amount" class='form-control' placeholder="Sub Total Amount" readonly></input>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <label>Total GST</label>
-                                                             <input type="number" name="gst_total_amount" id="gst_total_amount" class='form-control' placeholder="Total GST Amount"></input>
+                                                             <input type="number" name="gst_total_amount" id="gst_total_amount" class='form-control' placeholder="Total GST Amount" readonly></input>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <label>Final Amount</label>
-                                                                <input type="number" name="final_amount" id="final_amount" class='form-control' placeholder="Final Amount"></input>
+                                                                <input type="number" name="final_amount" id="final_amount" class='form-control' placeholder="Final Amount" readonly></input>
                                                         </div>
                                                     </div>
                                                 </div>
