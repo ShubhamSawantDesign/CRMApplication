@@ -147,6 +147,9 @@ $(document).on('click', '.removeDev', function(event) {
             console.err('Invalid input for unit price or GST rate');
         }
         $(this).calcualteTotalCost();
+        $(this).calcualteTotalSubAmount();
+        $(this).calcualteTotalGstAmount();
+
     });
 });
 
@@ -160,4 +163,28 @@ $.fn.calcualteTotalCost = function () {
         totalCost_calculation += cost;
     }
     $('#final_amount').val(totalCost_calculation.toFixed(2));
+}
+
+$.fn.calcualteTotalSubAmount = function () {
+    var subtotalCost_calculation = 0;
+    for (var i = 1; i <= items_count; i++) {
+        var cost = parseFloat($('#sub_cost_' + i).val());
+        if (isNaN(cost)) {
+            cost = 0;
+        }
+        subtotalCost_calculation += cost;
+    }
+    $('#sub_total_amount').val(subtotalCost_calculation.toFixed(2));
+}
+
+$.fn.calcualteTotalGstAmount = function () {
+    var totalgstCost_calculation = 0;
+    for (var i = 1; i <= items_count; i++) {
+        var cost = parseFloat($('#gst_amount_' + i).val());
+        if (isNaN(cost)) {
+            cost = 0;
+        }
+        totalgstCost_calculation += cost;
+    }
+    $('#gst_total_amount').val(totalgstCost_calculation.toFixed(2));
 }
