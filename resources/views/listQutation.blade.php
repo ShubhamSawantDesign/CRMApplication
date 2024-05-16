@@ -66,7 +66,8 @@
                                                             <th width='15%'>Customer Name </th>
                                                             <th width='21%'>Estimation Id </th>
                                                             <th>Reference ID</th>
-                                                            <th>Total Amount</th>
+                                                            <th>Sub Total Amount</th>
+                                                            <th>Total GST Amount</th>
                                                             <th>Final Amount</th>
                                                             <th>Sales Persone Name</th>
                                                             <th>Project Name</th>
@@ -83,7 +84,8 @@
                                                             <td>{{ $data->customer_name }}</td>
                                                             <td>{{ $data->estimate_id }}</td>
                                                             <td>{{ $data->reference_id }}</td>
-                                                            <td>{{ $data->total_amount }}</td>
+                                                            <td>{{ $data->sub_total_amount }}</td>
+                                                            <td>{{ $data->total_gst_amount }}</td>
                                                             <td>{{ $data->final_amount }}</td>
                                                             <td>{{ $data->sales_person }}</td>
                                                             <td>{{ $data->project_name }}</td>

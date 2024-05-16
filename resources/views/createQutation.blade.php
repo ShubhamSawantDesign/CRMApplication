@@ -21,12 +21,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Create Qutation</h1>
+                        <h1 class="m-0">Create Quotation</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Create Qutation</li>
+                            <li class="breadcrumb-item active">Create Quotation</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -40,7 +40,7 @@
                 <!-- SELECT2 EXAMPLE -->
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title">Create Qutation</h3>
+                        <h3 class="card-title">Create Quotation</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="row">
@@ -130,26 +130,16 @@
                                                     <hr class="verticle_line" style="">
                                                     <div class="row form-group">
                                                         <div class="col-md-2">
-                                                            <label>Total Amount</label>
-                                                                <input type="number" name="total_amount" id="total_amount" class='form-control' placeholder="Total Amount"></input>
+                                                            <label>Sub Total</label>
+                                                             <input type="number" name="sub_total_amount" id="sub_total_amount" class='form-control' placeholder="Sub Total Amount" readonly></input>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <label>Enter CGST</label>
-                                                             <input type="number" name="cgst" id="cgst" class='form-control' placeholder="Enter CGST"></input>
+                                                            <label>Total GST</label>
+                                                             <input type="number" name="gst_total_amount" id="gst_total_amount" class='form-control' placeholder="Total GST Amount" readonly></input>
                                                         </div>
-                                                        <div class="col-md-2">
-                                                            <label>Enter SGST</label>
-                                                             <input type="number" name="sgst" id="sgst" class='form-control' placeholder="Enter SGST Name"></input>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <label>Other Tax such as TCS</label>
-                                                             <input type="number" name="other" id="other" class='form-control' placeholder="Enter TCS Amount"></input>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row form-group">
                                                         <div class="col-md-2">
                                                             <label>Final Amount</label>
-                                                                <input type="number" name="final_amount" id="final_amount" class='form-control' placeholder="Total Amount"></input>
+                                                                <input type="number" name="final_amount" id="final_amount" class='form-control' placeholder="Final Amount" readonly></input>
                                                         </div>
                                                     </div>
                                                 </div>
