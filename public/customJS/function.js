@@ -44,28 +44,52 @@ $('a[name=addNewItem]').click(function (event) {
             <input type="input" class="form-control" name="sr_no[]" value="${items_count}" />
             </div>
         </div>
-        <div class="col-3 col-sm-3">
+        <div class="col-2 col-sm-2">
             <div class="form-group">
             <label>Item</label>
-            <input type="input" class="form-control" id=""  name="item[]" placeholder="Enter Particulars" />
+            <input type="input" class="form-control" id=""  name="item[]" placeholder="Enter Items" />
             </div>
         </div>
         <div class="col-2 col-sm-2">
+            <div class="form-group">
+            <label>Description</label>
+            <input type="input" class="form-control" id=""  name="description[]" placeholder="Enter Description" />
+            </div>
+        </div>
+        <div class="col-2 col-sm-1">
             <div class="form-group">
                 <label>Quantity</label>
-                <input type="number" class="form-control input_decimal_field quantity" id="quantity_${items_count}" data-unique-id=${items_count} name="quantity[]" placeholder="Enter The Quantity" />
+                <input type="number" class="form-control input_decimal_field quantity" id="quantity_${items_count}" data-unique-id=${items_count} name="quantity[]" placeholder="Quantity" />
             </div>
         </div>
-        <div class="col-2 col-sm-2">
+        <div class="col-2 col-sm-1">
             <div class="form-group">
-                <label>Cost</label>
-                <input type="number" class="form-control input_decimal_field cost" id="cost_${items_count}" data-unique-id=${items_count} name="cost[]" placeholder="Enter Cost" />
+                <label>Unit Price</label>
+                <input type="number" class="form-control input_decimal_field unit_price" id="unit_price_${items_count}" data-unique-id=${items_count} name="unit_price[]" placeholder="Unit Price" />
             </div>
         </div>
-        <div class="col-2 col-sm-2">
+        <div class="col-2 col-sm-1">
             <div class="form-group">
-                <label>Total Cost</label>
-                <input type="number" class="form-control input_decimal_field " id="total_Cost_${items_count}" name="total_Cost[]" placeholder="Enter Dev Price" />
+                <label>Sub Cost</label>
+                <input type="number" class="form-control input_decimal_field " id="sub_cost_${items_count}" name="total_Cost[]" placeholder="Sub Cost" />
+            </div>
+        </div>
+        <div class="col-2 col-sm-1">
+            <div class="form-group">
+                <label>GST Rate %</label>
+                <input type="number" class="form-control input_decimal_field gst_rate" id="gst_rate_${items_count}"  data-unique-id=${items_count} name="total_Cost[]" placeholder="GST Rate" />
+            </div>
+        </div>
+        <div class="col-2 col-sm-1">
+            <div class="form-group">
+                <label>GST Amount</label>
+                <input type="number" class="form-control input_decimal_field " id="gst_amount_${items_count}" name="total_Cost[]" placeholder="GST Amount" />
+            </div>
+        </div>
+        <div class="col-2 col-sm-1">
+            <div class="form-group">
+                <label>Total Amount</label>
+                <input type="number" class="form-control input_decimal_field " id="total_amount_${items_count}" name="total_Cost[]" placeholder="Total Amount" />
             </div>
         </div>
         <div class="col-1 col-sm-1">
@@ -85,50 +109,55 @@ $(document).on('click', '.removeDev', function(event) {
 
     $(document).on('change', '.quantity', function(event) {
         var idValue = $(this).data('unique-id');
-        if($('#cost_' + idValue).val() !== '')
+        if($('#unit_price_' + idValue).val() !== '')
         {
         var Quantity = $(this).val();
-        var cost = $('#cost_' + idValue).val();
+        var cost = $('#unit_price_' + idValue).val();
         var total_cost = Quantity * cost;
-        $('#total_Cost_' + idValue).val(total_cost);
-        $(this).calcualteTotalCost();
+        $('#sub_cost_' + idValue).val(total_cost);
         }
     });
 
-    $(document).on('change', '.cost', function(event) {
+    $(document).on('change', '.unit_price', function(event) {
         var idValue = $(this).data('unique-id');
         if($('#quantity_' + idValue).val() !== '')
         {
         var cost = $(this).val();
         var Quantity = $('#quantity_' + idValue).val();
         var total_cost = Quantity * cost;
-        $('#total_Cost_' + idValue).val(total_cost);
-        $(this).calcualteTotalCost();
+        $('#sub_cost_' + idValue).val(total_cost);
         }
     });
 
+    $(document).on('change', '.gst_rate' , function() {
+        var idValue = $(this).data('unique-id');
 
-    $('#cgst, #sgst, #other').on('change', function () {
-        var cgst = parseFloat($('#cgst').val()) || 0;
-        var sgst = parseFloat($('#sgst').val()) || 0;
-        var other = parseFloat($('#other').val()) || 0;
-        var total_amount = parseFloat($('#total_amount').val()) || 0;
+        var percentage =  parseFloat($('#gst_rate_' + idValue).val());
+        var sub_cost =  parseFloat($('#sub_cost_'+ idValue).val());
 
-        var final_amount = cgst + sgst + other + total_amount;
-        $('#final_amount').val(final_amount.toFixed(4));
+        if (!isNaN(percentage) && !isNaN(sub_cost)) {
+            var gstAmount = sub_cost * (percentage / 100);
+            var finalPrice = sub_cost + gstAmount;
+
+            $('#gst_amount_' + idValue).val(gstAmount.toFixed(2));
+            $('#total_amount_' + idValue).val(finalPrice.toFixed(2));
+
+
+        } else {
+            console.err('Invalid input for unit price or GST rate');
+        }
+        $(this).calcualteTotalCost();
     });
-
 });
 
 $.fn.calcualteTotalCost = function () {
     var totalCost_calculation = 0;
     for (var i = 1; i <= items_count; i++) {
-        var cost = parseFloat($('#total_Cost_' + i).val());
+        var cost = parseFloat($('#total_amount_' + i).val());
         if (isNaN(cost)) {
             cost = 0;
         }
         totalCost_calculation += cost;
     }
-    $('#total_amount').val(totalCost_calculation.toFixed(4));
-    $('#final_amount').val(totalCost_calculation.toFixed(4));
+    $('#final_amount').val(totalCost_calculation.toFixed(2));
 }
